@@ -29,7 +29,7 @@ export default function IndexPage() {
   const { nftAddress } = useContext(NftContext)
   const [allChains, setChains] = useState<ChainItem[]>([])
   const [address, setAddress] = useState(
-    nftAddress ? nftAddress : "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D"
+    nftAddress ? nftAddress : "0xfeee3700698f8d75bcc18e009022c7b44d2af44f"
   )
   const [busy, setBusy] = useState(false)
   const router = useRouter()
