@@ -79,7 +79,7 @@ export default function IndexPage() {
           }}
         >
           <Flex direction="column" gap="3">
-            <Popover open={open} onOpenChange={setOpen}>
+{/*             <Popover open={open} onOpenChange={setOpen}>
               <PopoverTrigger asChild>
                 <Button
                   variant="outline"
@@ -130,7 +130,7 @@ export default function IndexPage() {
               onChange={(e) => {
                 setAddress(e.target.value)
               }}
-            />
+            /> */}
             <div>
               <Button
                 disabled={address.length === 0 || !value || busy}
