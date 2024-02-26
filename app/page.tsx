@@ -34,7 +34,7 @@ export default function IndexPage() {
   const [busy, setBusy] = useState(false)
   const router = useRouter()
   const [open, setOpen] = useState(false)
-  const [value, setValue] = useState("eth-mainnet")
+  const [value, setValue] = useState("Zora-mainnet")
   const { toast } = useToast()
 
   const handleAllChains = async () => {
