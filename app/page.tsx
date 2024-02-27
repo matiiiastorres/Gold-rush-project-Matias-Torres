@@ -253,15 +253,45 @@ export default function IndexPage() {
   }, [])
 
   return (
-    <section className="container flex flex-col justify-center gap-6 md:py-10 h-[calc(100vh-150px)] items-center ">
-      <Flex direction="column" gap="4">
-        <h1 className="text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl">
-          GoldRush NFT Gallery UI
-        </h1>
-        <p className="max-w-[700px] text-lg text-muted-foreground">
-          Accessible and customizable components that you can copy and paste
-          into your apps. Free. Open Source. And Next.js 13 Ready.
-        </p>
+    // <section className="container flex flex-col justify-center gap-6 md:py-10 h-[calc(100vh-150px)] items-center ">
+    //   <Flex direction="column" gap="4">
+    //     <h1 className="text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl">
+    //       GoldRush NFT Gallery UI
+    //     </h1>
+    //     <p className="max-w-[700px] text-lg text-muted-foreground">
+    //       Accessible and customizable components that you can copy and paste
+    //       into your apps. Free. Open Source. And Next.js 13 Ready.
+    //     </p>
+
+
+
+
+ <section
+      className={cn(
+         " flex flex-col justify-center items-center h-screen",
+         "bg-cover bg-center bg-no-repeat",
+         "bg-[url('https://covalenthq.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fbbf0ee9a-5c2d-4620-bc84-79e668e84e4a%2F215f711f-8cbd-4cd7-bf49-0e6c10c9b6b3%2FAlchemists.jpg?table=block&id=0a0ce7a2-b097-49c0-b49d-23de8434682f&spaceId=bbf0ee9a-5c2d-4620-bc84-79e668e84e4a&width=2000&userId=&cache=v2')]"
+       )}
+       style={{ backgroundSize: "cover" }}
+     >
+     <Flex direction="column" gap="4">
+         <div className="text-center">
+           <h1 className="text-5xl font-extrabold leading-tight tracking-tighter md:text-6xl">
+             <span className="relative inline-block">
+               Alchemist Program 4.0 NFT Collections
+               <span className="absolute top-0 left-0 w-full h-full text-transparent bg-gradient-to-r from-red-400 to-blue-500 bg-clip-text animate-pulse">
+                 Alchemist Program 4.0 NFT Collections
+               </span>
+             </span>
+           </h1>
+         {/* <p className="text-2xl text-gray-700 animate-pulse">
+             Explore our exclusive  collection
+          </p> */}
+         </div>
+
+
+
+    
         <form
           onSubmit={(e) => {
             e.preventDefault()
