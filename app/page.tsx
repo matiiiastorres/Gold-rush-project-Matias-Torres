@@ -146,14 +146,14 @@
 //               }}
 //             /> */}
 
-//             <div className="text-center">
-//               <Button
-//                 disabled={address.length === 0 || !value || busy}
-//                 type="submit"
-//                 className="px-6 py-3 bg-purple-900 bg-opacity-50 text-white font-semibold rounded-lg shadow-md hover:bg-purple-600 transition-all duration-300"
-//               >
-//                 Go to Collection
-//               </Button>
+            // <div className="text-center">
+            //   <Button
+            //     disabled={address.length === 0 || !value || busy}
+            //     type="submit"
+            //     className="px-6 py-3 bg-purple-900 bg-opacity-50 text-white font-semibold rounded-lg shadow-md hover:bg-purple-600 transition-all duration-300"
+            //   >
+            //     Go to Collection
+            //   </Button>
 //             </div>
 //           </Flex>
 //         </form>
@@ -351,12 +351,13 @@ export default function IndexPage() {
                 setAddress(e.target.value)
               }}
             /> */}
-            <div>
+          <div className="text-center">
               <Button
                 disabled={address.length === 0 || !value || busy}
                 type="submit"
+                className="px-6 py-3 bg-purple-900 bg-opacity-50 text-white font-semibold rounded-lg shadow-md hover:bg-purple-600 transition-all duration-300"
               >
-                Continue
+                Go to Collection
               </Button>
             </div>
           </Flex>
