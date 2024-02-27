@@ -4,12 +4,15 @@ import { useRouter } from "next/navigation";
 import { NFTCollectionTokenListView } from "@covalenthq/goldrush-kit";
 import { Flex } from "@radix-ui/themes";
 import { Button } from "@/components/ui/button";
+import { SiteHeader } from "@/components/site-header"
 
 export default function Collection({ params }: { params: { chain: Chain, address: string } }) {
   const router = useRouter();
 
   return (
     <div className="w-full flex flex-col gap-4">
+   
+<SiteHeader />
       <NFTCollectionTokenListView
         chain_name={params.chain}
         collection_address={params.address}
