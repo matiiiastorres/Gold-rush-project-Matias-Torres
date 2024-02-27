@@ -28,7 +28,7 @@ export function SiteHeader() {
                 <span className="sr-only">GitHub</span>
               </div>
             </Link>
-            <Link href={siteConfig.links.settings}>
+{/*             <Link href={siteConfig.links.settings}>
               <div
                 className={buttonVariants({
                   size: "icon",
@@ -38,7 +38,7 @@ export function SiteHeader() {
                 <Icons.Settings className="h-5 w-5" />
                 <span className="sr-only">Settings</span>
               </div>
-            </Link>
+            </Link> */}
             <ThemeToggle />
           </nav>
         </div>
