@@ -6,14 +6,14 @@ import { Theme } from "@radix-ui/themes"
 
 import { fontSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
-import { SiteHeader } from "@/components/site-header"
+// import { SiteHeader } from "@/components/site-header"
 import { ThemeProvider } from "@/components/theme-provider"
 
 import "@radix-ui/themes/styles.css"
 import { NftProvider } from "@/lib/store"
 import { Toaster } from "@/components/ui/toaster"
 import { KeyDialog } from "@/components/key-dialog"
-import { Footer } from '@/components/footer';
+// import { Footer } from '@/components/footer';
 
 interface RootLayoutProps {
   children: React.ReactNode
@@ -34,10 +34,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
               <NftProvider>
                 <div className="relative flex min-h-screen flex-col">
-                  <SiteHeader />
+{/*                   <SiteHeader /> */}
                   <div className="flex-1">{children}</div>
                   <Analytics />
-                  <Footer/>
+{/*                   <Footer/> */}
                   <KeyDialog />
                   <Toaster />
                 </div>
