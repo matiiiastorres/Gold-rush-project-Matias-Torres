@@ -4,12 +4,15 @@ import { Chain} from "@covalenthq/client-sdk"
 import { NFTDetailView } from "@covalenthq/goldrush-kit";
 import { Flex } from "@radix-ui/themes";
 import { useRouter } from "next/navigation";
+import { SiteHeader } from "@/components/site-header"
 
 export default function Collection({ params }: { params: { chain: Chain, address: string, token_id: string } }) {
   const router = useRouter();
 
   return (
     <div className="flex flex-col gap-4 w-full">
+ 
+<SiteHeader />
       <NFTDetailView
         chain_name={params.chain}
         collection_address={params.address}
