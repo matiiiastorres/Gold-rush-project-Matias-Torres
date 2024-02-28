@@ -10,7 +10,7 @@ interface DashboardLayoutProps {
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
   return (
     <Flex
-      className="container min-h-[calc(100vh-150px)] py-8 w-full"
+      className=" min-h-[calc(100vh-150px)] w-full"
       justify="center"
     >
       {children}
