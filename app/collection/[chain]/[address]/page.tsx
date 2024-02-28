@@ -24,6 +24,7 @@ export default function Collection({
           throw new Error('Failed to fetch collection info')
         }
         const data = await response.json()
+ console.log(data)
         setCollectionInfo(data)
       } catch (error) {
         console.error("Error fetching collection info:", error)
