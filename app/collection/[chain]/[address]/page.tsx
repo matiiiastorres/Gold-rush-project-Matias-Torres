@@ -17,7 +17,7 @@ export default function Collection({
   const router = useRouter()
 
   return (
-    <div className="w-full flex flex-col gap-4">
+    <div className=" bg-background w-full flex flex-col gap-4">
       <SiteHeader />
       <NFTCollectionTokenListView
         chain_name={params.chain}
