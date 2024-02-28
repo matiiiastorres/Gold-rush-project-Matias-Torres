@@ -41,7 +41,7 @@ export function SiteHeader() {
               </div>
             </Link> */}
             <ThemeToggle />
-<boton-metamask />
+<Boton-metamask />
           </nav>
         </div>
       </div>
