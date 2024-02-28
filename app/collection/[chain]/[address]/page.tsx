@@ -1,3 +1,5 @@
+ "use client"
+
 import { useRouter } from "next/navigation"
 import { Chain } from "@covalenthq/client-sdk"
 import { useEffect, useState } from "react"
