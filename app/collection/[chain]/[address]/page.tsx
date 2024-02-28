@@ -7,6 +7,7 @@ import { Flex } from "@radix-ui/themes"
 
 import { Button } from "@/components/ui/button"
 import { SiteHeader } from "@/components/site-header"
+import { Footer } from "@/components/footer"
 
 export default function Collection({
   params,
@@ -37,6 +38,7 @@ export default function Collection({
       >
         <Button>Back</Button>
       </Flex>
+      <Footer />
     </div>
   )
 }
