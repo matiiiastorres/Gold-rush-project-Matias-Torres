@@ -70,7 +70,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(({ className, ...props 
   <div
     ref={ref}
     className={cn(
-      "rounded-lg border bg-white text-gray-800 shadow-md transition-transform transform hover:scale-105",
+      "rounded-xl border bg-blue-200 text-gray-800 shadow-lg transition-transform transform hover:scale-110",
       className
     )}
     {...props}
@@ -81,7 +81,7 @@ Card.displayName = "Card";
 const CardHeader = React.forwardRef<HTMLDivElement, CardProps>(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("p-4 transition-all duration-300", className)}
+    className={cn("p-6 transition-all duration-300", className)}
     {...props}
   />
 ));
@@ -91,7 +91,7 @@ const CardTitle = React.forwardRef<HTMLHeadingElement, CardProps>(({ className, 
   <h2
     ref={ref}
     className={cn(
-      "text-xl font-semibold leading-tight transition-all duration-300",
+      "text-2xl font-semibold leading-tight transition-all duration-300",
       className
     )}
     {...props}
@@ -102,24 +102,29 @@ CardTitle.displayName = "CardTitle";
 const CardDescription = React.forwardRef<HTMLParagraphElement, CardProps>(({ className, ...props }, ref) => (
   <p
     ref={ref}
-    className={cn("text-sm text-gray-600 transition-all duration-300", className)}
+    className={cn("text-lg text-gray-600 transition-all duration-300", className)}
     {...props}
   />
 ));
 CardDescription.displayName = "CardDescription";
 
 const CardContent = React.forwardRef<HTMLDivElement, CardProps>(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("p-4 transition-all duration-300", className)} {...props} />
+  <div ref={ref} className={cn("p-6 transition-all duration-300", className)} {...props} />
 ));
 CardContent.displayName = "CardContent";
 
 const CardFooter = React.forwardRef<HTMLDivElement, CardProps>(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("p-4 bg-gray-100 flex justify-end transition-all duration-300", className)}
+    className={cn("p-6 bg-gray-200 flex justify-end transition-all duration-300", className)}
     {...props}
   />
 ));
 CardFooter.displayName = "CardFooter";
 
 export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent };
+
+
+
+
+
