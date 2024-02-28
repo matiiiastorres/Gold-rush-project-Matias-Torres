@@ -5,6 +5,7 @@ import { buttonVariants } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
 import { MainNav } from "@/components/main-nav"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { BotonMetamask } from "@/components/newComponents/boton-metamask"
 
 export function SiteHeader() {
   return (
@@ -40,6 +41,7 @@ export function SiteHeader() {
               </div>
             </Link> */}
             <ThemeToggle />
+<boton-metamask />
           </nav>
         </div>
       </div>
