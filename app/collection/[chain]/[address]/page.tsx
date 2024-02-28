@@ -1,5 +1,6 @@
 import { useRouter } from "next/navigation"
-import { Chain, covalent } from "@covalenthq/client-sdk"
+import { Chain } from "@covalenthq/client-sdk"
+import { useEffect, useState } from "react"
 import { NFTCollectionTokenListView } from "@covalenthq/goldrush-kit"
 import { Flex } from "@radix-ui/themes"
 import { Button } from "@/components/ui/button"
@@ -11,18 +12,23 @@ export default function Collection({
   params: { chain: Chain; address: string }
 }) {
   const router = useRouter()
+  const [collectionInfo, setCollectionInfo] = useState<any>(null)
 
-  // Función para obtener la información de la colección
-  const getCollectionInfo = async () => {
-    try {
-      const client = covalent.getClient()
-      const response = await client.nft.collections(params.chain, params.address).execute()
-      return response.data
-    } catch (error) {
-      console.error("Error fetching collection info:", error)
-      return null
+  useEffect(() => {
+    const fetchCollectionInfo = async () => {
+      try {
+        const response = await fetch(`https://api.covalenthq.com/v1/${params.chain}/tokens/${params.address}/nft_metadata/`)
+        if (!response.ok) {
+          throw new Error('Failed to fetch collection info')
+        }
+        const data = await response.json()
+        setCollectionInfo(data)
+      } catch (error) {
+        console.error("Error fetching collection info:", error)
+      }
     }
-  }
+    fetchCollectionInfo()
+  }, [params.chain, params.address])
 
   return (
     <>
@@ -42,12 +48,12 @@ export default function Collection({
         {/* Sección de información de la colección */}
         <div className="bg-white rounded-lg shadow-md p-4">
           <h2 className="text-xl font-bold">Collection Information</h2>
-          <div>
-            {/* Aquí mostramos la información de la colección */}
-            {/* Por ejemplo, puedes mostrar la descripción y el logo */}
-            <p>Description: ...</p>
-            <img src="logo-url" alt="Collection Logo" className="w-20 h-20" />
-          </div>
+          {collectionInfo && (
+            <div>
+              <p>Description: {collectionInfo.description}</p>
+              <img src={collectionInfo.logo_url} alt="Collection Logo" className="w-20 h-20" />
+            </div>
+          )}
         </div>
         
         {/* Botón de retroceso */}
