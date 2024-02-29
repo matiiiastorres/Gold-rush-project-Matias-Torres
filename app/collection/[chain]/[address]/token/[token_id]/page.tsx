@@ -30,7 +30,7 @@ export default function Collection({
         chain_name={params.chain}
         collection_address={params.address}
         token_id={params.token_id}
-        external_data={params.external_data}
+          external_data={params.external_data.animation_url}
       />
       {/* Fragmento para mostrar la animación del NFT */}
       <div className="flex justify-center items-center">
