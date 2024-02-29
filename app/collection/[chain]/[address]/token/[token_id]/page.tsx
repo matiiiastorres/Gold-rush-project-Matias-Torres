@@ -15,8 +15,7 @@ export default function Collection({
   params: {
     chain: Chain;
     address: string;
-    token_id: string;
-    external_data: any; // Ajusta el tipo según la estructura de tus datos externos
+       nft_data: string
   };
 }) {
   // const router = useRouter();
@@ -24,11 +23,18 @@ export default function Collection({
   return (
     <div className="flex flex-col gap-4 w-full">
       <SiteHeader />
-      <NFTDetailView
+{/*       <NFTDetailView
         chain_name={params.chain}
         collection_address={params.address}
         token_id={params.token_id}
         external_data={params.external_data}
+      /> */}
+<NFTDetailView
+        chain_name={params.chain}
+        collection_address={params.address}
+        // token_id={params.token_id}
+        // external_data={params.external_data.animation_url}
+        nft_data={params.nft_data}
       />
       {/* Fragmento para mostrar la animación del NFT */}
       <div className="flex justify-center items-center">
