@@ -9,9 +9,9 @@ const NFTCollectionSearch = () => {
     if (!collectionAddress) return;
 
     try {
-      const apiKey = 'cqt_rQMT4whKFkpbPHBGFvrdmpYY4gF3'; // Tu clave de API
-      const url = `https://api.covalenthq.com/v1/mainnet/tokens/${collectionAddress}/nft_metadata?key=${apiKey}`;
-      const response = await fetch(url);
+      const response = await fetch(
+        `https://api.covalenthq.com/v1/zora/mainnet/tokens/${collectionAddress}/nft_metadata?key=cqt_rQMT4whKFkpbPHBGFvrdmpYY4gF3`
+      );
       if (!response.ok) {
         throw new Error("Failed to fetch data");
       }
@@ -37,7 +37,15 @@ const NFTCollectionSearch = () => {
       {nftData && (
         <div>
           <h2>NFT Collection Information:</h2>
-          <pre>{JSON.stringify(nftData, null, 2)}</pre>
+          <div className="grid grid-cols-3 gap-4">
+            {nftData.items.map((nft, index) => (
+              <div key={index} className="border border-gray-300 rounded-md p-2">
+                <img src={nft.external_data.image} alt={`NFT ${index}`} className="w-full h-auto" />
+                <p>{nft.external_data.name}</p>
+                <p>{nft.external_data.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </div>
