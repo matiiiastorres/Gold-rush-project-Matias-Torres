@@ -25,6 +25,7 @@ export default function Collection({
             chain_name={params.chain}
             collection_address={params.address}
             on_nft_click={(e: any) => {
+                 console.log(e.nft_data);
               router.push(
                 `/collection/${params.chain}/${params.address}/token/${e.nft_data.token_id}`
               )
