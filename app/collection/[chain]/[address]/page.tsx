@@ -40,22 +40,15 @@ export default function Collection({
         <SiteHeader />
         
         {/* Sección de la lista de NFT */}
-{/*         <NFTCollectionTokenListView
+        <NFTCollectionTokenListView
           chain_name={params.chain}
           collection_address={params.address}
           on_nft_click={(e: any) => {
-            console.log(e)
-            router.push(`/collection/${params.chain}/${params.address}/token/${e.nft_data.token_id}`)
+    console.log("Información completa de nft_data:", e.nft_data);    
+    router.push(`/collection/${params.chain}/${params.address}/token/${e.nft_data.token_id}`)
           }}
-        /> */}
-<NFTCollectionTokenListView
-  chain_name={params.chain}
-  collection_address={params.address}
-  on_nft_click={(e: any) => {
-    console.log("Información completa de nft_data:", e.nft_data);
-    router.push(`/collection/${params.chain}/${params.address}/token/${e.nft_data.token_id}`);
-  }}
-/>
+        />
+
         
         {/* Sección de información de la colección */}
         <div className="bg-white rounded-lg shadow-md p-4">
