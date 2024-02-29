@@ -10,7 +10,7 @@ const NFTCollectionSearch = () => {
 
     try {
       const response = await fetch(
-        `https://api.covalenthq.com/v1/zora/mainnet/tokens/${collectionAddress}/nft_metadata?key=${import.meta.env.VITE_COVALENT_API_KEY}`
+        `https://api.covalenthq.com/v1/zora/mainnet/tokens/${collectionAddress}/nft_metadata?key=cqt_rQMT4whKFkpbPHBGFvrdmpYY4gF3`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch data");
