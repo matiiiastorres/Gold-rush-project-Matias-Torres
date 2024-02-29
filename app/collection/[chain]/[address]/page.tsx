@@ -50,7 +50,7 @@ export default function Collection({
         />
 
         
-        {/* Sección de información de la colección */}
+{/*         {/* Sección de información de la colección */}
         <div className="bg-white rounded-lg shadow-md p-4">
           <h2 className="text-xl font-bold">Collection Information</h2>
           {collectionInfo && (
@@ -59,7 +59,7 @@ export default function Collection({
               <img src={collectionInfo.logo_url} alt="Collection Logo" className="w-20 h-20" />
             </div>
           )}
-        </div>
+        </div> */}
         
         {/* Botón de retroceso */}
         <Flex onClick={() => router.back()}>
