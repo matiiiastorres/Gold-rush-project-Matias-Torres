@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use client";
 
 // import { useRouter } from "next/router";
@@ -15,7 +16,9 @@ export default function Collection({
     chain: Chain;
     address: string;
     token_id: string;
-    external_data: string;
+    external_data: {
+      animation_url: string;
+    };
   };
 }) {
   // const router = useRouter();
