@@ -124,10 +124,9 @@
 
 // export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent };
 
-
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import "./CardHolographic.css" // Importamos el archivo CSS para el efecto holográfico
+import * as React from "react";
+import { cn } from "@/lib/utils";
+import "./CardHolographic.css"; // Importamos el archivo CSS para el efecto holográfico
 
 const Card = React.forwardRef(
   ({ className, ...props }, ref) => (
@@ -140,8 +139,8 @@ const Card = React.forwardRef(
       {...props}
     />
   )
-)
-Card.displayName = "Card"
+);
+Card.displayName = "Card";
 
 const CardHeader = React.forwardRef(
   ({ className, ...props }, ref) => (
@@ -151,8 +150,8 @@ const CardHeader = React.forwardRef(
       {...props}
     />
   )
-)
-CardHeader.displayName = "CardHeader"
+);
+CardHeader.displayName = "CardHeader";
 
 const CardTitle = React.forwardRef(
   ({ className, ...props }, ref) => (
@@ -165,8 +164,8 @@ const CardTitle = React.forwardRef(
       {...props}
     />
   )
-)
-CardTitle.displayName = "CardTitle"
+);
+CardTitle.displayName = "CardTitle";
 
 const CardDescription = React.forwardRef(
   ({ className, ...props }, ref) => (
@@ -176,15 +175,15 @@ const CardDescription = React.forwardRef(
       {...props}
     />
   )
-)
-CardDescription.displayName = "CardDescription"
+);
+CardDescription.displayName = "CardDescription";
 
 const CardContent = React.forwardRef(
   ({ className, ...props }, ref) => (
     <div ref={ref} className={cn("p-6 pt-0", className)} {...props} />
   )
-)
-CardContent.displayName = "CardContent"
+);
+CardContent.displayName = "CardContent";
 
 const CardFooter = React.forwardRef(
   ({ className, ...props }, ref) => (
@@ -194,10 +193,7 @@ const CardFooter = React.forwardRef(
       {...props}
     />
   )
-)
-CardFooter.displayName = "CardFooter"
+);
+CardFooter.displayName = "CardFooter";
 
-export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }
-
-
-
+export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent };
