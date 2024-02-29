@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 import { Chain } from "@covalenthq/client-sdk";
 import { NFTDetailView } from "@covalenthq/goldrush-kit";
 import { Flex } from "@radix-ui/themes";
@@ -18,7 +18,7 @@ export default function Collection({
     external_data: string;
   };
 }) {
-  const router = useRouter();
+  // const router = useRouter();
 
   return (
     <div className="flex flex-col gap-4 w-full">
