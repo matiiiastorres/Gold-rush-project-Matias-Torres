@@ -7,6 +7,7 @@ import { NFTCollectionTokenListView } from "@covalenthq/goldrush-kit"
 import { Flex } from "@radix-ui/themes"
 import { Button } from "@/components/ui/button"
 import { SiteHeader } from "@/components/site-header"
+import NFTCollectionSearch from "@/components/NFTCollectionSearch"
 
 export default function Collection({
   params,
@@ -65,7 +66,8 @@ export default function Collection({
         </Flex>
         
         {/* Footer */}
-        {/* <Footer /> */}
+        <NFTCollectionSearch />
+
       </div>
     </>
   )
