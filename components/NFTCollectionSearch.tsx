@@ -1,28 +1,27 @@
-import { useState } from "react"
-
-import { Button } from "@/components/ui/button"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
 
 const NFTCollectionSearch = () => {
-  const [collectionAddress, setCollectionAddress] = useState("")
-  const [nftData, setNftData] = useState(null)
+  const [collectionAddress, setCollectionAddress] = useState("");
+  const [nftData, setNftData] = useState(null);
 
   const handleSearch = async () => {
-    if (!collectionAddress) return
+    if (!collectionAddress) return;
 
     try {
-      const response = await fetch(
-        `https://api.covalenthq.com/v1/mainnet/tokens/${collectionAddress}/nft_metadata`
-      )
+      const apiKey = 'cqt_rQMT4whKFkpbPHBGFvrdmpYY4gF3'; // Tu clave de API
+      const url = `https://api.covalenthq.com/v1/mainnet/tokens/${collectionAddress}/nft_metadata?key=${apiKey}`;
+      const response = await fetch(url);
       if (!response.ok) {
-        throw new Error("Failed to fetch data")
+        throw new Error("Failed to fetch data");
       }
-      const data = await response.json()
-      setNftData(data)
-      console.log("NFT Collection Data:", data)
+      const data = await response.json();
+      setNftData(data);
+      console.log("NFT Collection Data:", data);
     } catch (error) {
-      console.error("Error fetching collection info:", error)
+      console.error("Error fetching collection info:", error);
     }
-  }
+  };
 
   return (
     <div className="p-4">
@@ -42,7 +41,7 @@ const NFTCollectionSearch = () => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default NFTCollectionSearch
+export default NFTCollectionSearch;
