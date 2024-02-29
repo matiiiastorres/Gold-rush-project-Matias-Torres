@@ -1,8 +1,7 @@
 // @ts-nocheck
 "use client";
 
-// import { useRouter } from "next/router";
-import { Chain } from "@covalenthq/client-sdk";
+/import { Chain } from "@covalenthq/client-sdk";
 import { NFTDetailView } from "@covalenthq/goldrush-kit";
 import { Flex } from "@radix-ui/themes";
 
@@ -16,9 +15,7 @@ export default function Collection({
     chain: Chain;
     address: string;
     token_id: string;
-    external_data: {
-      animation_url: string;
-    };
+    external_data: any; // Ajusta el tipo según la estructura de tus datos externos
   };
 }) {
   // const router = useRouter();
@@ -30,7 +27,7 @@ export default function Collection({
         chain_name={params.chain}
         collection_address={params.address}
         token_id={params.token_id}
-          external_data={params.external_data.animation_url}
+        external_data={params.external_data}
       />
       {/* Fragmento para mostrar la animación del NFT */}
       <div className="flex justify-center items-center">
@@ -66,7 +63,6 @@ export default function Collection({
     </div>
   );
 }
-
 
 
 
