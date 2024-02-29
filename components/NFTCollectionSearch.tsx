@@ -3,14 +3,14 @@ import { Button } from "@/components/ui/button";
 
 const NFTCollectionSearch = () => {
   const [collectionAddress, setCollectionAddress] = useState("");
-  const [nftData, setNftData] = useState(null);
+  const [nftData, setNftData] = useState<any>(null);
 
   const handleSearch = async () => {
     if (!collectionAddress) return;
 
     try {
       const response = await fetch(
-        `https://api.covalenthq.com/v1/zora/mainnet/tokens/${collectionAddress}/nft_metadata?key=cqt_rQMT4whKFkpbPHBGFvrdmpYY4gF3`
+        `https://api.covalenthq.com/v1/zora/mainnet/tokens/${collectionAddress}/nft_metadata?key=${import.meta.env.VITE_COVALENT_API_KEY}`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch data");
@@ -34,11 +34,11 @@ const NFTCollectionSearch = () => {
       />
       <Button onClick={handleSearch}>Search</Button>
 
-      {nftData && (
+      {typeof nftData !== 'undefined' && nftData?.items && (
         <div>
           <h2>NFT Collection Information:</h2>
           <div className="grid grid-cols-3 gap-4">
-            {nftData.items.map((nft, index) => (
+            {nftData.items.map((nft: any, index: number) => (
               <div key={index} className="border border-gray-300 rounded-md p-2">
                 <img src={nft.external_data.image} alt={`NFT ${index}`} className="w-full h-auto" />
                 <p>{nft.external_data.name}</p>
