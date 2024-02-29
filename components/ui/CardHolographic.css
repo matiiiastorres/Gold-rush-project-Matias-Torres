@@ -1,0 +1,12 @@
+@keyframes holographic {
+  0% {
+    background-position: -500px -500px;
+  }
+  100% {
+    background-position: 500px 500px;
+  }
+}
+
+.holographic {
+  animation: holographic 5s linear infinite alternate;
+}
