@@ -1,7 +1,8 @@
 // @ts-nocheck
 "use client";
 
-/import { Chain } from "@covalenthq/client-sdk";
+import { Chain } from "@covalenthq/client-sdk";
+
 import { NFTDetailView } from "@covalenthq/goldrush-kit";
 import { Flex } from "@radix-ui/themes";
 
