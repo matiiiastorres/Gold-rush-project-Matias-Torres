@@ -33,7 +33,7 @@ export default function Collection({
             on_nft_click={(e: any) => {
                 console.log("Datos del NFT:", e); // Agregar console.log() aquí
               router.push(
-                `/collection/${params.chain}/${params.address}/token/${e.nft_data.}`
+                `/collection/${params.chain}/${params.address}/token/${e.nft_data.token_id}`
               )
             }}
             custom_styles={{
