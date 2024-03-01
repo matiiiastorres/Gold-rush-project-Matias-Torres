@@ -1,219 +1,133 @@
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 
-interface NFTData {
-  contract_address: string;
-  contract_name: string;
-  contract_ticker_symbol: string | null;
-  is_spam: boolean;
-  nft_data: {
-    animation_url: string;
-    asset_cached: boolean;
-    external_data: string;
-    asset_file_extension: string | null;
-    asset_mime_type: string | null;
-    asset_size_bytes: number | null;
-    asset_url: string | null;
-    attributes: string[];
-    description: string;
-    external_url: string | null;
-    image: string;
-    image_256: string;
-    image_512: string;
-    image_1024: string;
-    name: string;
-  };
-  original_owner: string;
-  token_id: string;
-  token_url: string;
-  type: string;
-}
 
-interface Props {
-  nftData: NFTData;
-}
 
-const NFTDetailComponent: React.FC<Props> = ({ nftData }) => {
-  const router = useRouter();
-  const [animationUrl, setAnimationUrl] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (nftData && nftData.nft_data?.external_data?.animation_url) {
-      setAnimationUrl(nftData.nft_data.external_data.animation_url);
-    }
-  }, [nftData]);
+
+
+"use client"
+
+import { useRouter } from "next/navigation"
+import { Chain } from "@covalenthq/client-sdk"
+import { NFTCollectionTokenListView } from "@covalenthq/goldrush-kit"
+import { Flex } from "@radix-ui/themes"
+
+import { Button } from "@/components/ui/button"
+import { SiteHeader } from "@/components/site-header"
+
+export default function Collection({
+  params,
+}: {
+  params: { chain: Chain; address: string }
+}) {
+  const router = useRouter()
 
   return (
-    <div className="flex flex-col gap-4 w-full">
-      {/* Mostrar detalles del NFT aquí */}
-      <div className="text-center">
-        <h1 className="text-xl font-bold">{nftData.nft_data.name}</h1>
-        <p className="text-gray-500">{nftData.nft_data.description}</p>
-      </div>
-
-      {/* Mostrar animación del NFT */}
-      <div className="flex justify-center items-center">
-        {animationUrl ? (
-          <video className="w-80 bg-base-200 rounded-lg" autoPlay controls loop>
-            <source
-              src={`https://ipfs.io/ipfs/${animationUrl.slice(7)}`}
-              type="video/mp4"
-            />
-          </video>
-        ) : (
-          <div className="w-80 h-40 bg-base-200 rounded-lg text-pretty text-center text-gray-500 cursor-not-allowed">
-            No Animation
+    <div className="bg-background w-full flex flex-col gap-4">
+      <SiteHeader />
+      <div className="flex flex-col md:flex-row gap-4">
+        {/* Galería de NFT (ocupará la mitad de la pantalla en dispositivos grandes) */}
+        <div className="w-full md:w-1/2">
+          <NFTCollectionTokenListView
+            chain_name={params.chain}
+            collection_address={params.address}
+            on_nft_click={(e: any) => {
+                console.log("Datos del NFT:", e); // Agregar console.log() aquí
+              router.push(
+                `/collection/${params.chain}/${params.address}/token/${e.nft_data.}`
+              )
+            }}
+            custom_styles={{
+              card: "bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition duration-300",
+            }}
+          />
+        </div>
+        {/* Descripción de la colección (ocupará la mitad de la pantalla en dispositivos grandes) */}
+        <div className="w-full md:w-1/2">
+          <div>
+            <img  src="https://covalenthq.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fbbf0ee9a-5c2d-4620-bc84-79e668e84e4a%2Fa2bbfe3f-f4ec-474e-97a7-cc2986cd5a1a%2Falchemist_logo_medallion_720.png?table=block&id=0a0ce7a2-b097-49c0-b49d-23de8434682f&spaceId=bbf0ee9a-5c2d-4620-bc84-79e668e84e4a&width=250&userId=&cache=v2"className="w-28 h-28" alt="" />
+            <h3 className="text-[2rem] font-semibold text-[#ff4c8b]">
+              Alchemist 4.0
+            </h3>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <img
+                src="https://covalenthq.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fbbf0ee9a-5c2d-4620-bc84-79e668e84e4a%2Fa2bbfe3f-f4ec-474e-97a7-cc2986cd5a1a%2Falchemist_logo_medallion_720.png?table=block&id=0a0ce7a2-b097-49c0-b49d-23de8434682f&spaceId=bbf0ee9a-5c2d-4620-bc84-79e668e84e4a&width=250&userId=&cache=v2"
+                  className="w-8 h-8 rounded-full"
+                  alt=""
+                />
+                <div>Covalent</div>
+              </div>
+              <div className="flex items-center gap-2">
+                {/* Botón de mint info (mostrado solo en dispositivos grandes) */}
+                <button className="items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 text-primary underline-offset-4 hover:underline h-9 px-4 py-2 font-normal hidden md:flex">
+                  Mint Info
+                </button>
+                {/* Botón de mint info (mostrado solo en dispositivos pequeños) */}
+                <button className="items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 text-primary underline-offset-4 hover:underline h-9 px-4 py-2 font-normal flex md:hidden">
+                  Mint Info
+                </button>
+              </div>
+            </div>
+            <p className="text-sm line-clamp-2">
+              Special-made NFTs for Alchemists that have shown above and beyond
+              contributions to the ecosystem and community.
+              <br />
+              <br />
+              These are available for a limited time for version Alchemist 4.0.
+            </p>
+            {/* Información adicional */}
+            <div className="text-sm grid grid-cols-1 gap-2">
+              <div className="flex items-center justify-between">
+                <div className="text-muted-foreground">Contract Address</div>
+                <a
+                  href="https://explorer.zora.energy/address/0xfeee3700698f8d75bcc18e009022c7b44d2af44f"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 text-primary underline-offset-4 hover:underline h-9 px-4 py-2 font-normal">
+                    0xfeee...af44f
+                  </button>
+                </a>
+              </div>
+              <div className="flex items-center justify-between">
+                <div className="text-muted-foreground">Total Items</div>
+                <div>16</div>
+              </div>
+              <div className="flex items-center justify-between">
+                <div className="text-muted-foreground">Network</div>
+                <div>Zora Mainnet</div>
+              </div>
+            </div>
+            <div
+              data-orientation="horizontal"
+              role="none"
+              className="shrink-0 bg-border h-[1px] w-full"
+            ></div>
+            {/* Botones adicionales (mostrados solo en dispositivos grandes) */}
+            <div className="my-4 hidden md:flex">
+              <button className="items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 shadow h-9 w-full bg-primary-covalent text-white hover:opacity-[0.75] hover:bg-primary-covalent transition-all">
+                Mint Info
+              </button>
+            </div>
+            {/* Botones adicionales (mostrados solo en dispositivos pequeños) */}
+            <div className="my-4 flex md:hidden">
+              <button className="items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 shadow h-9 w-full bg-primary-covalent text-white hover:opacity-[0.75] hover:bg-primary-covalent transition-all">
+                Mint Info
+              </button>
+            </div>
           </div>
-        )}
+        </div>
       </div>
-
-      {/* Botón de retroceso */}
-      <div className="flex justify-center">
-        <button
-          onClick={() => {
-            router.back();
-          }}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        >
-          Back
-        </button>
-      </div>
+      <Flex
+        onClick={() => {
+          router.back()
+        }}
+      >
+        <Button>Back</Button>
+      </Flex>
     </div>
-  );
-};
-
-export default NFTDetailComponent;
-
-
-
-
-
-
-
-// "use client"
-
-// import { useRouter } from "next/navigation"
-// import { Chain } from "@covalenthq/client-sdk"
-// import { NFTCollectionTokenListView } from "@covalenthq/goldrush-kit"
-// import { Flex } from "@radix-ui/themes"
-
-// import { Button } from "@/components/ui/button"
-// import { SiteHeader } from "@/components/site-header"
-
-// export default function Collection({
-//   params,
-// }: {
-//   params: { chain: Chain; address: string }
-// }) {
-//   const router = useRouter()
-
-//   return (
-//     <div className="bg-background w-full flex flex-col gap-4">
-//       <SiteHeader />
-//       <div className="flex flex-col md:flex-row gap-4">
-//         {/* Galería de NFT (ocupará la mitad de la pantalla en dispositivos grandes) */}
-//         <div className="w-full md:w-1/2">
-//           <NFTCollectionTokenListView
-//             chain_name={params.chain}
-//             collection_address={params.address}
-//             on_nft_click={(e: any) => {
-//                 console.log("Datos del NFT:", e); // Agregar console.log() aquí
-//               router.push(
-//                 `/collection/${params.chain}/${params.address}/token/${e.nft_data}`
-//               )
-//             }}
-//             custom_styles={{
-//               card: "bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition duration-300",
-//             }}
-//           />
-//         </div>
-//         {/* Descripción de la colección (ocupará la mitad de la pantalla en dispositivos grandes) */}
-//         <div className="w-full md:w-1/2">
-//           <div>
-//             <img  src="https://covalenthq.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fbbf0ee9a-5c2d-4620-bc84-79e668e84e4a%2Fa2bbfe3f-f4ec-474e-97a7-cc2986cd5a1a%2Falchemist_logo_medallion_720.png?table=block&id=0a0ce7a2-b097-49c0-b49d-23de8434682f&spaceId=bbf0ee9a-5c2d-4620-bc84-79e668e84e4a&width=250&userId=&cache=v2"className="w-28 h-28" alt="" />
-//             <h3 className="text-[2rem] font-semibold text-[#ff4c8b]">
-//               Alchemist 4.0
-//             </h3>
-//             <div className="flex items-center justify-between">
-//               <div className="flex items-center gap-2">
-//                 <img
-//                 src="https://covalenthq.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fbbf0ee9a-5c2d-4620-bc84-79e668e84e4a%2Fa2bbfe3f-f4ec-474e-97a7-cc2986cd5a1a%2Falchemist_logo_medallion_720.png?table=block&id=0a0ce7a2-b097-49c0-b49d-23de8434682f&spaceId=bbf0ee9a-5c2d-4620-bc84-79e668e84e4a&width=250&userId=&cache=v2"
-//                   className="w-8 h-8 rounded-full"
-//                   alt=""
-//                 />
-//                 <div>Covalent</div>
-//               </div>
-//               <div className="flex items-center gap-2">
-//                 {/* Botón de mint info (mostrado solo en dispositivos grandes) */}
-//                 <button className="items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 text-primary underline-offset-4 hover:underline h-9 px-4 py-2 font-normal hidden md:flex">
-//                   Mint Info
-//                 </button>
-//                 {/* Botón de mint info (mostrado solo en dispositivos pequeños) */}
-//                 <button className="items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 text-primary underline-offset-4 hover:underline h-9 px-4 py-2 font-normal flex md:hidden">
-//                   Mint Info
-//                 </button>
-//               </div>
-//             </div>
-//             <p className="text-sm line-clamp-2">
-//               Special-made NFTs for Alchemists that have shown above and beyond
-//               contributions to the ecosystem and community.
-//               <br />
-//               <br />
-//               These are available for a limited time for version Alchemist 4.0.
-//             </p>
-//             {/* Información adicional */}
-//             <div className="text-sm grid grid-cols-1 gap-2">
-//               <div className="flex items-center justify-between">
-//                 <div className="text-muted-foreground">Contract Address</div>
-//                 <a
-//                   href="https://explorer.zora.energy/address/0xfeee3700698f8d75bcc18e009022c7b44d2af44f"
-//                   target="_blank"
-//                   rel="noopener noreferrer"
-//                 >
-//                   <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 text-primary underline-offset-4 hover:underline h-9 px-4 py-2 font-normal">
-//                     0xfeee...af44f
-//                   </button>
-//                 </a>
-//               </div>
-//               <div className="flex items-center justify-between">
-//                 <div className="text-muted-foreground">Total Items</div>
-//                 <div>16</div>
-//               </div>
-//               <div className="flex items-center justify-between">
-//                 <div className="text-muted-foreground">Network</div>
-//                 <div>Zora Mainnet</div>
-//               </div>
-//             </div>
-//             <div
-//               data-orientation="horizontal"
-//               role="none"
-//               className="shrink-0 bg-border h-[1px] w-full"
-//             ></div>
-//             {/* Botones adicionales (mostrados solo en dispositivos grandes) */}
-//             <div className="my-4 hidden md:flex">
-//               <button className="items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 shadow h-9 w-full bg-primary-covalent text-white hover:opacity-[0.75] hover:bg-primary-covalent transition-all">
-//                 Mint Info
-//               </button>
-//             </div>
-//             {/* Botones adicionales (mostrados solo en dispositivos pequeños) */}
-//             <div className="my-4 flex md:hidden">
-//               <button className="items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 shadow h-9 w-full bg-primary-covalent text-white hover:opacity-[0.75] hover:bg-primary-covalent transition-all">
-//                 Mint Info
-//               </button>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//       <Flex
-//         onClick={() => {
-//           router.back()
-//         }}
-//       >
-//         <Button>Back</Button>
-//       </Flex>
-//     </div>
-//   )
-// }
+  )
+}
 
 
 
